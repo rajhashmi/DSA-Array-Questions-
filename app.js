@@ -38,4 +38,56 @@ console.log(FindLargestElBetter([1,3,5,4,6,7,8]));
 
 // ===================================================================
 
+  // Q2. Find The Second Largest Element.
+
+// 1 brute
+
+function FindSecondLargestElBrute(arr){
+        let sortedArr = arr.sort()
+        let SecondMaxNum = sortedArr[0];
+        for(let i = 0; i< arr.length;i++){
+            if(SecondMaxNum< sortedArr[i] && sortedArr[i]!== sortedArr[sortedArr.length - 1]){
+                SecondMaxNum = sortedArr[i]
+            }
+        }
+        return SecondMaxNum
+}
+console.log(FindSecondLargestElBrute([1,7,7,7,7,7,]));
+
+// 2. Better 
+
+function FindSecondLargestElBetter(arr){
+    let Largest = arr[0];
+    let secondLargest = -1;
+    for(let i = 0; i<arr.length; i++){
+        if(Largest < arr[i]){
+            Largest = arr[i]
+        }
+    }
+    for(let i = 0; i < arr.length; i++){
+        if(secondLargest < arr[i] && arr[i]!== Largest){
+            secondLargest = arr[i]
+        }
+    }
+    return secondLargest
+}
+console.log(FindSecondLargestElBetter([1,7,7,7,7,7,]));
+                                                                        // O[2n]
+
+// 3. Optimal 
+
+function FindSecondLargestElOptimal(arr){
+   let Largest = arr[0];
+    let secondLargest = -1;
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] > Largest){
+            secondLargest = Largest;
+            Largest = arr[i]
+        }else if (arr[i] > secondLargest && arr[i]!== Largest){
+            secondLargest = arr[i]
+        }
+    }
+    return secondLargest
+}
+console.log(FindSecondLargestElOptimal([7,7,7,3,7]));
 
