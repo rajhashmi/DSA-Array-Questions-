@@ -339,10 +339,11 @@ function missingNumberOptimal2(arr){
     let xor2 = 0;
 
     for(let i = 0; i < arr.length; i++){
+      console.log();
         xor2 = xor2 ^ arr[i];
     
         xor1 = xor1 ^ (i + 1)
-        console.log(xor1,xor2);
+     
 
     }
     xor1 = xor1 ^ arr.length+1;
@@ -350,3 +351,45 @@ function missingNumberOptimal2(arr){
     return xor1 ^ xor2
 }
 console.log(missingNumberOptimal2([1,2,4,5]));
+
+
+// Q9.  find the maximum consecutive one
+
+function maximumConecutiveOne(arr){
+  let maxConecutiveOne = 0;
+  let counter = 0;
+  for(let i = 0; i < arr.length;i++){
+    if(arr[i]=== 1 ){
+      counter++
+    }else if(arr[i] === 0){
+      if(maxConecutiveOne < counter){
+        maxConecutiveOne = counter
+      }
+      counter = 0
+    }
+  }
+  return maxConecutiveOne
+}
+console.log(maximumConecutiveOne([1,1,1,1,1,0,1,1,1,1,1,1,0,1,1]));
+
+
+// Find the number that appaer once and other number twice
+
+// brute
+
+function numberThatAppaer(arr){
+  let result = 0;
+  for(let i = 0; i<arr.length;i++){
+    let counter = 1;
+    for(let j = 0; j <arr.length;j++){
+       if(i !== j && arr[i]===arr[j]){      
+        counter++
+      }
+    }
+    if(counter === 1){
+     result = arr[i]
+    }
+  }
+  return result
+}
+console.log(numberThatAppaer([1,1,2,3,3,4,4,5,5]));
