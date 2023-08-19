@@ -22,7 +22,7 @@ function FindLargestElBetter(arr) {
 }
 console.log(FindLargestElBetter([1, 3, 5, 4, 6, 7, 8]));
 
-// 3. Optimal
+// // 3. Optimal
 
 function FindLargestElOptimal(arr) {
   let maxNum = arr[0];
@@ -35,11 +35,11 @@ function FindLargestElOptimal(arr) {
 }
 console.log(FindLargestElBetter([1, 3, 5, 4, 6, 7, 8]));
 
-// ===================================================================
+// // ===================================================================
 
-// Q2. Find The Second Largest Element.
+// // Q2. Find The Second Largest Element.
 
-// 1 brute
+// // 1 brute
 
 function FindSecondLargestElBrute(arr) {
   let sortedArr = arr.sort();
@@ -56,7 +56,7 @@ function FindSecondLargestElBrute(arr) {
 }
 console.log(FindSecondLargestElBrute([1, 7, 7, 7, 7, 7]));
 
-// 2. Better
+// // 2. Better
 
 function FindSecondLargestElBetter(arr) {
   let Largest = arr[0];
@@ -74,9 +74,9 @@ function FindSecondLargestElBetter(arr) {
   return secondLargest;
 }
 console.log(FindSecondLargestElBetter([1, 7, 7, 7, 7, 7]));
-// O[2n]
+// // O[2n]
 
-// 3. Optimal
+// // 3. Optimal
 
 function FindSecondLargestElOptimal(arr) {
   let Largest = arr[0];
@@ -93,11 +93,11 @@ function FindSecondLargestElOptimal(arr) {
 }
 console.log(FindSecondLargestElOptimal([7, 7, 7, 3, 7]));
 
-// =========================================================================================
+// // =========================================================================================
 
-// 3. Check if Array is Sorted
+// // 3. Check if Array is Sorted
 
-//  brute
+// //  brute
 
 function isSortBrute(arr) {
   let unSortedrray = arr;
@@ -113,7 +113,7 @@ function isSortBrute(arr) {
 }
 console.log(isSortBrute([1, 2, 6, 4, 5]));
 
-// Optimal
+// // Optimal
 
 function isSortOptimal(arr) {
   let result = true;
@@ -126,11 +126,11 @@ function isSortOptimal(arr) {
 }
 console.log(isSortOptimal([1, 2, 100, 3, 3, 4]));
 
-//  =====================================================================
+// //  =====================================================================
 
-// 4. Remove duplicate in place from sorted array
+// // 4. Remove duplicate in place from sorted array
 
-// Optimal
+// // Optimal
 
 function RemoveDuplicatesOptimal(nums) {
   if (nums.length === 0) return 0;
@@ -146,9 +146,11 @@ function RemoveDuplicatesOptimal(nums) {
 }
 console.log(RemoveDuplicatesOptimal([1, 1, 2, 3, 3]));
 
-// 5. left Rotate the array by one place
+// =============================================================================
 
-// brute
+// // 5. left Rotate the array by one place
+
+// // brute
 
 function leftRotateBrute(arr) {
   let newArr = [];
@@ -163,7 +165,7 @@ function leftRotateBrute(arr) {
 }
 console.log(leftRotateBrute([1, 2, 3, 4, 5]));
 
-// Optimal
+// // Optimal
 
 function leftRotateOptimal(arr) {
   let firstEL = arr[0];
@@ -174,6 +176,9 @@ function leftRotateOptimal(arr) {
   return arr;
 }
 console.log(leftRotateOptimal([1, 2, 3, 4, 5]));
+
+//
+// left rotate an array by D places
 
 // 3.  move Zero to Last
 
@@ -317,7 +322,6 @@ function main() {
 }
 main();
 
-
 // Optimal
 
 function missingNumberOptimal(arr){
@@ -331,8 +335,7 @@ function missingNumberOptimal(arr){
 }
 console.log(missingNumberOptimal([1,2,4,5]));
 
-
-// Optimal 
+// Optimal
 
 function missingNumberOptimal2(arr){
     let xor1 = 0;
@@ -341,9 +344,8 @@ function missingNumberOptimal2(arr){
     for(let i = 0; i < arr.length; i++){
       console.log();
         xor2 = xor2 ^ arr[i];
-    
+
         xor1 = xor1 ^ (i + 1)
-     
 
     }
     xor1 = xor1 ^ arr.length+1;
@@ -351,7 +353,6 @@ function missingNumberOptimal2(arr){
     return xor1 ^ xor2
 }
 console.log(missingNumberOptimal2([1,2,4,5]));
-
 
 // Q9.  find the maximum consecutive one
 
@@ -372,7 +373,6 @@ function maximumConecutiveOne(arr){
 }
 console.log(maximumConecutiveOne([1,1,1,1,1,0,1,1,1,1,1,1,0,1,1]));
 
-
 // Find the number that appaer once and other number twice
 
 // brute
@@ -382,7 +382,7 @@ function numberThatAppaer(arr){
   for(let i = 0; i<arr.length;i++){
     let counter = 1;
     for(let j = 0; j <arr.length;j++){
-       if(i !== j && arr[i]===arr[j]){      
+       if(i !== j && arr[i]===arr[j]){
         counter++
       }
     }
@@ -393,3 +393,66 @@ function numberThatAppaer(arr){
   return result
 }
 console.log(numberThatAppaer([1,1,2,3,3,4,4,5,5]));
+
+
+
+// optimal solution
+
+// Majority Element
+console.log("========================================");
+function majorityElement(nums){
+    let counter = 0;
+    let counterTwo = 0;
+    let currentElement;
+    let Nlength = nums.length/2
+    for(let i = 0; i < nums.length; i++){
+       
+        if(counter == 0){
+            counter = 1
+            currentElement = nums[i]
+            // console.log(currentElement);
+        }else if(nums[i] == currentElement){
+            counter++
+        }else{
+            counter--
+            i--
+        }
+    }
+    for(let i = 0; i<nums.length;i++){
+        if(nums[i] == currentElement){
+            counterTwo++
+        }
+    }
+    console.log(currentElement);
+    console.log(counter);
+    if(counterTwo > Nlength){
+        return currentElement
+    }else{
+        return -1
+    }
+}
+console.log(majorityElement([3,3,4]));
+
+
+
+
+var maxSubArray = function(nums) {
+    let maxNum = -Infinity;
+
+    if (nums.length === 1) {
+        return nums[0];
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = i; j < nums.length; j++) {
+            let sum = 0;
+            for (let k = i; k < j; k++) {
+                sum += nums[k];
+            }
+            maxNum = Math.max(maxNum, sum);
+        }
+    }
+    return maxNum;
+};
+
+console.log(maxSubArray([5, 4, -1, 7, 8])); // Output: 23
