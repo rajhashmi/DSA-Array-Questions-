@@ -456,3 +456,126 @@ var maxSubArray = function(nums) {
 };
 
 console.log(maxSubArray([5, 4, -1, 7, 8])); // Output: 23
+
+
+// Rearrange Array Elements by Sign
+
+var rearrangeArray = function(nums) {
+    let positive = [];
+    let negative = [];
+    for(let i = 0; i< nums.length;i++){
+        if(nums[i]>0){
+            positive.push(nums[i])
+        }else{
+            negative.push(nums[i])
+        }
+    }
+    let negativeCounter = 0;
+    let positiveCounter = 0;
+
+    for(let i = 0; i< nums.length;i++){
+        if(i%2==0){
+            nums[i] = positive[positiveCounter]
+            positiveCounter++
+        }else{
+            console.log(i)
+            nums[i] = negative[negativeCounter]
+            negativeCounter++
+        }
+    }
+    return nums
+};
+
+// Optimal
+
+var rearrangeArray2 = function(nums) {
+  let positive = 0, negative = 1;
+  let ans = new Array(nums.length).fill(0)
+  for(let i = 0; i < nums.length;i++){
+      if(nums[i] < 0){
+          ans[negative] = nums[i];
+          negative += 2
+      }else{
+          ans[positive] = nums[i]
+          positive +=2
+      }
+  }
+  return ans
+};
+
+// Variety-2 
+
+var rearrangeArrayVariety_2 = function(nums) {
+  let positive = [];
+  let negative = [];
+  let secondLoop = 0;
+  let ans = [];
+  for(let i = 0; i< nums.length;i++){
+    if(nums[i] > 0){
+      positive.push(nums[i])
+    }else{
+      negative.push(nums[i])
+    }
+  }
+  if(negative.length > positive.length){
+    secondLoop = negative.length -1
+  }else{
+    secondLoop = positive.length -1
+  }
+  let positiveInx = 0, negativeInx = 1
+  for(let i = 0; i< secondLoop*2;i++){
+    if(nums[i] < 0){
+      ans[negativeInx] = nums[i];
+      negativeInx += 2
+  }else{
+      ans[positiveInx] = nums[i]
+      positiveInx +=2
+  }
+  }
+  for (let i = 0; i < positive.length; i++) {
+    if (!ans.includes(positive[i])) {
+      ans.push(positive[i]);
+    }
+  }
+  return ans
+
+};
+console.log(rearrangeArrayVariety_2([1,-3,-7,3,4]));
+
+// Leaders in an Array | Brute - Optimal
+
+//  Brute
+
+function leadersInAnArray(nums){
+  let leadersArr = [];
+  for(let i = 0; i< nums.length;i++){
+    let leaders = true;
+    for(let j = i; j < nums.length; j++){
+      if(nums[i] < nums[j]){
+        leaders = false;
+      }
+    }
+    if(leaders){
+      leadersArr.push(nums[i])
+    }
+  }
+  return leadersArr
+}
+console.log(leadersInAnArray([10,22,12,3,0,6]));
+
+//  optimal
+
+function leadersInAnArrayOptimal(nums){
+  let leadersArr = [];
+  let maxNum = Number.NEGATIVE_INFINITY;
+  
+  for(let i = nums.length - 1; i>=0;i--){
+    if(nums[i] > maxNum){
+      maxNum = nums[i]
+      leadersArr.push(nums[i])
+    }
+  }
+
+  return leadersArr
+}
+console.log(leadersInAnArrayOptimal([10,22,12,3,0,6]));
