@@ -579,3 +579,90 @@ function leadersInAnArrayOptimal(nums){
   return leadersArr
 }
 console.log(leadersInAnArrayOptimal([10,22,12,3,0,6]));
+
+
+set matrix to zero 
+
+function zeroMatrix(matrix,n,m){
+
+  function markRow(matrix, n, m, i){
+    for(let j = 0; j < m; j++){
+      if(matrix[i][j] !== 0){
+        matrix[i][j] = -1
+      }
+    }
+  }
+
+  function markCol(matrix, n, m, j){
+    for(let i = 0; i< n; i++){
+      if(matrix[i][j] !== 0){
+        matrix[i][j] = -1;
+      }
+    }
+  }
+
+
+  for(let i = 0; i < n; i++){
+    for(let j = 0; j < m; j++){
+      if(matrix[i][j] === 0){
+        markRow(matrix, n, m, i);
+        markCol(matrix, n, m, j);
+      }
+    }
+  }
+
+  for(let i = 0; i< n; i++){
+    for(let j = 0; j< m; j++){
+      if(matrix[i][j]=== -1){
+        matrix[i][j]= 0
+      }
+    }
+  }
+
+  return matrix
+}
+
+
+
+const matrix = [
+  [1, 1, 1],
+  [1, 0, 1],
+  [1, 1, 1],
+];
+
+const n = matrix.length;
+const m = matrix[0].length;
+
+const ans = zeroMatrix(matrix, n, m);
+console.log(ans);
+
+
+// // ==============================================
+
+
+function setZeroes(matrix) {
+  let coloum = new Array(matrix.length).fill(0)
+  let row = new Array(matrix.length).fill(0)
+  for(let i = 0; i< matrix.length;i++ ){
+    for(let j = 0; j <matrix[i].length;j++){
+      if(matrix[i][j]==0){
+        row[i] = 1;
+        coloum[j] = 1;
+      }
+    }
+  }
+
+  for(let i = 0; i<matrix.length;i++){
+    for(let j = 0; j <matrix[i].length;j++){
+      if(coloum[j] || row[i]){
+        matrix[i][j] = 0
+      }
+    }
+  }
+  return matrix
+}
+console.log(setZeroes([
+  [1, 1, 1],
+  [1, 0, 1],
+  [1, 1, 1],
+]));
