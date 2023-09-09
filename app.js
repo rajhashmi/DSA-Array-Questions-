@@ -581,7 +581,7 @@ function leadersInAnArrayOptimal(nums){
 console.log(leadersInAnArrayOptimal([10,22,12,3,0,6]));
 
 
-set matrix to zero 
+// set matrix to zero 
 
 function zeroMatrix(matrix,n,m){
 
@@ -666,3 +666,57 @@ console.log(setZeroes([
   [1, 0, 1],
   [1, 1, 1],
 ]));
+for(let i = 0; i< 10; i+=2){
+  console.log(i);
+}
+
+console.log("3 Sum");
+// 3 sum brute force 
+
+function ThreSum(arr){
+  let result = [];
+
+  for(let i = 0; i< arr.length;i++){
+    for(let j = i+1; j<arr.length;j++){
+      for(let k = j+1;k<arr.length;k++){
+        if(arr[i] + arr[j] + arr[k] == 0){
+          let temp = [arr[i],arr[j],arr[k]];
+          temp.sort((a,b)=> a-b);
+          result.push(temp)
+        }
+      }
+    }
+  }
+  
+  let set = new Set(result.map(JSON.stringify))
+  result = Array.from(set).map(JSON.parse)
+  return result
+}
+console.log(ThreSum([-1,0,1,2,-1,-4]));
+ 
+
+// better 
+
+function ThreSum_better(nums){
+  let ans = [];
+  let n = nums.length;
+  for(let i = 0; i < n; i++){
+    let hashSet = new Set();
+    for(let j= i + 1; j < n; j++){
+      let third = -(nums[i] + nums[j]);
+
+      if(hashSet.has(third)){
+        let temp = [nums[i], nums[j], third];
+        temp.sort((a,b)=> a - b);
+        ans.push(temp)
+      }
+      hashSet.add(nums[j])
+    }
+  }
+
+  let set  = new Set(ans.map(JSON.stringify));
+  ans = Array.from(set).map(JSON.parse);
+  return ans;
+
+}
+console.log(ThreSum_better( [-1, 0, 1, 2, -1, -4]));
