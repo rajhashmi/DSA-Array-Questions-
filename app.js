@@ -747,3 +747,35 @@ function FourSum(nums){
   return result
 }
 console.log(FourSum([1,0,-1,0,-2,2]))
+
+//  Merge Sorted arrays without extra space
+
+// brute force
+
+function mergeSorted(arr1,arr2){
+  let n = arr1.length;
+  let m = arr2.length;
+  let i = 0;
+  let j = 0;
+  let result = [];
+  while(i < n && j < m){
+    if(arr1[i] < arr2[j]){
+      result.push(arr1[i])
+      i++
+    }else{
+      result.push(arr2[j]);
+      j++
+    }
+  }
+  while(i < n){
+    result.push(arr1[i++]);
+  }
+  
+  while(j < m){
+    result.push(arr2[j++]);
+  }
+
+
+  return result;
+};
+console.log(mergeSorted([1,3,5,7],[0,2,6,8,9]))
