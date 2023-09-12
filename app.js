@@ -779,3 +779,30 @@ function mergeSorted(arr1,arr2){
   return result;
 };
 console.log(mergeSorted([1,3,5,7],[0,2,6,8,9]))
+
+
+
+//  Merge Sorted arrays without extra space
+
+// better solution
+
+function mergeSorted_Better(arr1,arr2){
+
+  let n = arr1.length;
+  let m = arr2.length;
+  let left = n-1;
+  let right = 0;
+  while(left >= 0 && right < m){
+    if(arr1[left] > arr2[right]){
+      [arr1[left],arr2[right]] = [arr2[right],arr1[left]]
+      console.log('df');
+      left--
+      right++
+    }else{
+      break;
+    }
+  }
+  return [...arr1,...arr2].sort()
+}
+console.log(mergeSorted_Better([1,3,5,7],[0,2,6,8,9]));
+
