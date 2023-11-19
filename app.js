@@ -815,6 +815,4 @@ console.log(mergeSorted_Better([1,3,5,7],[0,2,6,8,9]));
 
 
 
-//  Merge Sorted arrays without extra space
-
-// optmal solution
+ 
